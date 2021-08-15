@@ -1,0 +1,89 @@
+Basic E-commerce 
+
+Backend
+
+setting express server and mongoose
+
+// Users
+
+model->
+name 
+lastname
+username
+email
+password
+date
+profilePicture
+
+// routes 
+create user
+
+Update profile
+
+routes/
+
+get /user 
+
+Post /user
+
+edit /user:id
+
+*delete /user:id BONUS
+ 
+/login
+/signup -> create user
+
+
+
+// model -> products
+
+title 
+Description
+value
+createdDate
+UpdateDate
+Category
+image
+user->by
+quantity
+
+
+CRUD -> product
+
+post /products
+
+get /products
+get /products:id
+
+JOIN -> get products by category
+get /products?query=category
+
+
+// Category 
+CRUD -> 
+title
+description
+
+
+* research Upload images -> 
+
+cloudinary 
+aws 
+
+// middlewares (YUP)
+validation -> correct data
+
+
+authetication 
+validate JWT 
+
+// error handling
+
+
+Tasks:
+
+1 create a new repo 
+2 add as colaborator
+
+Dead line -> 26 august
+
