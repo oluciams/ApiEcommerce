@@ -9,18 +9,17 @@ const jwt = require('jsonwebtoken');
  */
 const createUser = async (req, res) => {
 
-  const { email, password, confirmationPassword } = req.body;
-  if (!email || !password || !confirmationPassword) {
-    res.status(403).json({ error: { status: 403, message: 'email or password incorrect' } });
+  const { name, lastname, email, password, confirmationPassword, profilePicture } = req.body;
+  if (!name || !lastname || !email || !password || !confirmationPassword ) {
+    res.status(403).json({ error: { status: 403,
+    message: 'Some fields weren\'t send, please check if the name, lastname, email, password and confirmation password ' } });
   }
   if (password !== confirmationPassword) {
     res.status(403).json({ error: { status: 403, message: 'passwords doesn\'t match' } });
   }
 
   try {
-    console.log(email);
-
-    const user = await new User({ email, password });
+    const user = await new User({ name, lastname, email, password, profilePicture });
     await user.save();
 
     res.status(201).json(user);
@@ -30,9 +29,6 @@ const createUser = async (req, res) => {
     //FIXME: fix handling erros
     throw new Error(error);
   }
-
-
-
 }
 
 const loginUser = async (req, res) => {
@@ -55,7 +51,17 @@ const loginUser = async (req, res) => {
   } catch (error) {
     throw new Error(error);
   }
+}
 
+const getUser = async (req, res)=>{
+  const {id} = req.params
+  try {
+    const user = await User.findById(id)
+    res.status(200).json(user)
+
+  } catch (error) {
+    throw new Error(error);     
+  }
 }
 
 const logOut = (req, res) => {
@@ -68,6 +74,19 @@ const showData = (req, res) => {
 }
 
 
+const updateUser = async (req, res) => {
+  const id = req.params.id
+  let { name, lastname, email, profilePicture} = req.body;
+
+  try {
+    const user = await User.findByIdAndUpdate(id, { name, lastname, email, profilePicture})    
+    res.status(201).json(user);    
+  } catch (error) {
+    throw new Error(error); 
+  }
+} 
+
+
 module.exports = {
-  createUser, loginUser, logOut, showData
+  createUser, loginUser, logOut, showData, getUser, updateUser
 }

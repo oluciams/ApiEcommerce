@@ -2,21 +2,21 @@ Basic E-commerce
 
 Backend
 
-setting express server and mongoose
+setting express server and mongoose ok
 
 // Users
 
-model->
-name 
-lastname
-username
-email
-password
-date
-profilePicture
+model->             ok
+name                ok
+lastname            ok
+username            ok
+email               ok
+password            ok
+date                ok
+profilePicture      
 
 // routes 
-create user
+create user         ok
 
 Update profile
 
@@ -24,14 +24,14 @@ routes/
 
 get /user 
 
-Post /user
+Post /user          ok login
 
 edit /user:id
 
 *delete /user:id BONUS
  
-/login
-/signup -> create user
+/login                      ok
+/signup -> create user      ok
 
 
 

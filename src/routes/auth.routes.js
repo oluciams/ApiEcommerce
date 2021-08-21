@@ -1,14 +1,18 @@
 const router = require('express').Router();
 
-const { loginUser, createUser, showData } = require('../controllers/auth.controllers');
+const { loginUser, createUser, showData, getUser, updateUser } = require('../controllers/auth.controllers');
 const authTokenValidator = require('../middlewares/authTokenValidator');
+
+// signup
+router.post('/signup', createUser);
 
 //login
 router.post('/login', loginUser);
 
-// signup
+router.get('/user/:id', getUser);
 
-router.post('/signup', createUser);
+// Update Profile
+router.put('/user/:id', authTokenValidator, updateUser);
 
 
 // jwt testing validation

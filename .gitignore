@@ -1,5 +1,5 @@
 node_modules
 
-# Acordarse de añadir el .env  al gitignore
+.env
 
 yarn.lock

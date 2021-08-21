@@ -15,7 +15,6 @@ const authTokenValidator = (req, res, next) => {
       next({ statusCode: 403, message: 'forbidden' });
     }
     else {
-
       console.log(user);
       req.user = user.id;
       next();

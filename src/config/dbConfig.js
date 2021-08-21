@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/userAPI', {
+mongoose.connect('mongodb://localhost:27017/ecommerceAPI', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
