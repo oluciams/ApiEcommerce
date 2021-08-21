@@ -11,7 +11,7 @@ require('./config/dbConfig');
 
 
 const authRoutes = require('./routes/auth.routes');
-
+const productRoutes= require('./routes/product.routes');
 
 // express settings
 // decode form
@@ -21,6 +21,7 @@ app.use(express.json());
 
 // routes
 app.use(authRoutes);
+app.use(productRoutes)
 
 
 

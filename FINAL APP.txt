@@ -18,15 +18,15 @@ profilePicture
 // routes 
 create user         ok
 
-Update profile
+Update profile      
 
 routes/
 
-get /user 
+get /user           ok
 
 Post /user          ok login
 
-edit /user:id
+edit /user:id       ok
 
 *delete /user:id BONUS
  
@@ -37,22 +37,22 @@ edit /user:id
 
 // model -> products
 
-title 
-Description
-value
-createdDate
-UpdateDate
-Category
-image
-user->by
-quantity
+title               ok
+Description         ok
+value               ok
+createdDate         ok
+UpdateDate          ok
+Category            ok
+image               ok
+user->by            ok
+quantity            ok
 
 
 CRUD -> product
 
-post /products
+post /products      ok
 
-get /products
+get /products       
 get /products:id
 
 JOIN -> get products by category
