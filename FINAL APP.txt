@@ -52,8 +52,8 @@ CRUD -> product
 
 post /products      ok
 
-get /products       
-get /products:id
+get /products       ok
+get /products:id    ok
 
 JOIN -> get products by category
 get /products?query=category
@@ -61,8 +61,8 @@ get /products?query=category
 
 // Category 
 CRUD -> 
-title
-description
+title               ok
+description         ok
 
 
 * research Upload images -> 

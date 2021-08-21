@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
     }
 
   } catch (error) {
-    throw new Error(error);
+    res.status(400).json({error })
   }
 }
 
@@ -60,7 +60,7 @@ const getUser = async (req, res)=>{
     res.status(200).json(user)
 
   } catch (error) {
-    throw new Error(error);     
+    res.status(400).json({error })    
   }
 }
 
@@ -82,11 +82,16 @@ const updateUser = async (req, res) => {
     const user = await User.findByIdAndUpdate(id, { name, lastname, email, profilePicture})    
     res.status(201).json(user);    
   } catch (error) {
-    throw new Error(error); 
+    res.status(400).json({error })
   }
 } 
 
 
 module.exports = {
-  createUser, loginUser, logOut, showData, getUser, updateUser
+  createUser,
+  loginUser,
+  logOut,
+  showData,
+  getUser,
+  updateUser
 }
