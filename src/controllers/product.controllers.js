@@ -19,13 +19,29 @@ const createProducts = async(req, res)=>{
   }
 }
 
-const showProducts = async (req, res)=>{
+const showProducts = async (req, res)=>{  
+
     try {
+      if(req.query.category){   
+        
+        function prueba(elemento){
+          cpnsole.log("entré")
+          console.log(elemento)
+          return elemento = req.query.category
+        }
+
+        const products = await Product.find().populate('category')
+        //console.log("Desde acá..................................")
+        //console.log(products[2].category.title)
+        const productsCategory = products.filter(prueba)
+
+      }else{
         const products = await Product.find({}).populate('category')
-        res.status(200).json(products)        
-    } catch (error) {
-      res.status(400).json({error })
-    }
+        res.status(200).json(products)       
+      }
+      } catch (error) {
+        res.status(400).json({error })
+      }
 }
 
 const getProduct = async (req, res)=>{

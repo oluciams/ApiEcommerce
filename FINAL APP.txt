@@ -55,7 +55,7 @@ post /products      ok
 get /products       ok
 get /products:id    ok
 
-JOIN -> get products by category
+JOIN -> get products by category  ok
 get /products?query=category
 
 
