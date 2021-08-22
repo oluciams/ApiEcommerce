@@ -1,12 +1,18 @@
 const Product = require('../models/product.model')
+const Category = require('../models/category.model')
 
 const createProducts = async(req, res)=>{  
 
-  const {title, description, value, image, category, quantity} = req.body;
+  const {title, description, value, image, categoryId, quantity} = req.body;
+  const category = await Category.findById(categoryId)
   try {
-      const product = new Product({title, description, value, image, category, quantity, user: res.locals.user});
-      await product.save()
-      res.status(200).json(product)      
+      const product = new Product({title, description, value, image, category: category._id, quantity, user: res.locals.user});
+      
+      const savedProduct = await product.save()
+      //adiciono el producto creado al arreglo de productos de esa categoria
+      category.products= category.products.concat(savedProduct._id)
+      await category.save()  
+      res.status(200).json(savedProduct)      
       
   } catch (error) {
     res.status(400).json({error })     
@@ -15,7 +21,7 @@ const createProducts = async(req, res)=>{
 
 const showProducts = async (req, res)=>{
     try {
-        const products = await Product.find()
+        const products = await Product.find({}).populate('category')
         res.status(200).json(products)        
     } catch (error) {
       res.status(400).json({error })

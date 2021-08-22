@@ -60,7 +60,7 @@ get /products?query=category
 
 
 // Category 
-CRUD -> 
+CRUD ->             ok
 title               ok
 description         ok
 

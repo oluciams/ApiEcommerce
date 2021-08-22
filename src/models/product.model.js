@@ -31,9 +31,11 @@ const ProductSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  category:{
-    type: String,
-  },
+  category:
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
+    },    
   quantity: {
     type: Number,
     require: true,
