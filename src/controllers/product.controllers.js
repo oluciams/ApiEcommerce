@@ -22,19 +22,15 @@ const createProducts = async(req, res)=>{
 const showProducts = async (req, res)=>{  
 
     try {
-      if(req.query.category){   
+      if(req.query.category){  
+                 
+        const categoryId = req.query.category
+
+        const products = await Product.find().populate('category')        
+        const productsCategory= products.filter( product => product.category.id === categoryId  )
+        res.status(200).json(productsCategory)   
+
         
-        function prueba(elemento){
-          cpnsole.log("entré")
-          console.log(elemento)
-          return elemento = req.query.category
-        }
-
-        const products = await Product.find().populate('category')
-        //console.log("Desde acá..................................")
-        //console.log(products[2].category.title)
-        const productsCategory = products.filter(prueba)
-
       }else{
         const products = await Product.find({}).populate('category')
         res.status(200).json(products)       
