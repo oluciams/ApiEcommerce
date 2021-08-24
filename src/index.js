@@ -3,6 +3,7 @@ require('dotenv').config();
 
 // express
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const jwt = require('jsonwebtoken');
 
@@ -19,6 +20,8 @@ const categoryRoutes= require('./routes/category.routes')
 app.use(express.urlencoded({ extended: true }));
 //decode json
 app.use(express.json());
+//cors
+app.use(cors())
 
 // routes
 app.use(authRoutes);
