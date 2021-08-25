@@ -22,15 +22,10 @@ const createProducts = async(req, res)=>{
 const showProducts = async (req, res)=>{  
 
     try {
-      if(req.query.category){  
-                 
-        const categoryId = req.query.category
-
-        const products = await Product.find().populate('category')        
-        const productsCategory= products.filter( product => product.category.id === categoryId  )
-        res.status(200).json(productsCategory)   
-
-        
+      if(req.query.category){ 
+        const categoryId = req.query.category 
+        const products = await Product.find({category: categoryId }).populate('category')
+        res.status(200).json(products) 
       }else{
         const products = await Product.find({}).populate('category')
         res.status(200).json(products)       
