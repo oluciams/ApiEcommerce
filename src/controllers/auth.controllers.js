@@ -21,7 +21,6 @@ const createUser = async (req, res) => {
   try {
     const user = await new User({ name, lastname, email, password, profilePicture });
     await user.save();
-
     res.status(201).json(user);
   } catch (error) {
     // error.statusCode = 403
@@ -36,17 +35,24 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    res.status(403).json({ error: { status: 403, message: 'email or password incorrect' } });
+    res.status(403).json({ error: { status: 403, message: 'email and password are required' } });
   }
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.authenticate({email, password });  
+    console.log(user)  
     if (user) {
       //TODO: validate password
       console.log(user);
       const token = jwt.sign({ id: user._id }, process.env.SECRET);
       res.status(200).json({ token });
+    } 
+    if (user === false){
+      res.status(500).json({ msg: 'Incorrect password'})
     }
+    if (user === null){
+      res.status(500).json({ msg: 'Invalid email, please type again or Register'})
+    }       
 
   } catch (error) {
     res.status(400).json({error })

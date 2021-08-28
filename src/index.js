@@ -30,6 +30,8 @@ app.use(categoryRoutes)
 
 
 
+
+
 app.get('*', function (req, res, next) {
     res.status(404).json({ error: 'not found' });
 });
