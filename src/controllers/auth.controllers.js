@@ -70,6 +70,7 @@ const getUser = async (req, res)=>{
   }
 }
 
+
 const logOut = (req, res) => {
   console.log('logout user');
 }
