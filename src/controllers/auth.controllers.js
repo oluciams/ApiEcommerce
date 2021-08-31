@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 const createUser = async (req, res) => {
 
   const { name, lastname, email, password, confirmationPassword, profilePicture } = req.body;
-  if (!name || !lastname || !email || !password || !confirmationPassword ) {
+  if (!name || !lastname || !email || !password || !confirmationPassword || !profilePicture ) {
     res.status(403).json({ error: { status: 403,
     message: 'Some fields weren\'t send, please check if the name, lastname, email, password and confirmation password ' } });
   }
