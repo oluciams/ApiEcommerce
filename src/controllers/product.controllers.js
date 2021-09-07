@@ -56,11 +56,22 @@ const getProduct = async (req, res)=>{
     }catch (error) {
         res.status(400).json({message: false})
     }
+  }
+
+  const deleteProducts = async (req, res) => {
+    try {        
+        const { id } = req.params;
+        await Product.deleteOne({_id:id }) 
+        res.status(200).json({success: true, message: 'Product deleted successfully'})
+    }catch (error) {
+        res.status(400).json({success: false, message: 'Something gone wrong'})
+    }
 }
 
 module.exports = {
     createProducts,
     showProducts,
     getProduct,
-    updateProducts
-}
+    updateProducts, 
+    deleteProducts
+  }
