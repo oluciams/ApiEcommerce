@@ -28,8 +28,7 @@ const ProductSchema = new Schema({
     default: Date.now()
   },
   updatedDate: {
-    type: Date,
-    default: Date.now()
+    type: Date,   
   },
   category:
   {
