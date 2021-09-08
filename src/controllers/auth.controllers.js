@@ -33,7 +33,7 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
 
   const { email, password } = req.body;
-
+  console.log(req.body)
   if (!email || !password) {
     res.status(403).json({ error: { status: 403, message: 'email and password are required' } });
   }
@@ -46,14 +46,11 @@ const loginUser = async (req, res) => {
       console.log(user);
       const token = jwt.sign({ id: user._id }, process.env.SECRET);
       res.status(200).json({ token });
-    } 
-    if (user === false){
-      res.status(500).json({ msg: 'Incorrect password'})
-    }
-    if (user === null){
-      res.status(500).json({ msg: 'Invalid email, please type again or Register'})
-    }       
+    } else{
+      res.status(400).json({ message: 'Invalid password or email'})
 
+    }
+    
   } catch (error) {
     res.status(400).json({error })
   }
@@ -93,6 +90,16 @@ const updateUser = async (req, res) => {
   }
 } 
 
+const deleteUser = async (req, res) => {
+  const {id} = req.params
+
+  try {
+    await User.deleteOne({_id: id})
+    res.status(200).json({message: true});    
+  } catch (error) {
+    res.status(400).json({ error })    
+  }    
+}
 
 module.exports = {
   createUser,
@@ -100,5 +107,6 @@ module.exports = {
   logOut,
   showData,
   getUser,
-  updateUser
+  updateUser,
+  deleteUser
 }
