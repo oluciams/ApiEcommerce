@@ -35,7 +35,7 @@ const showProducts = async (req, res)=>{
       }
 }
 
-const getProduct = async (req, res)=>{
+const getProducts = async (req, res)=>{
     const {id} = req.params
     try {
       const product = await Product.findById(id)
@@ -71,7 +71,7 @@ const getProduct = async (req, res)=>{
 module.exports = {
     createProducts,
     showProducts,
-    getProduct,
+    getProducts,
     updateProducts, 
     deleteProducts
   }
