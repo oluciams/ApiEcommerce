@@ -5,8 +5,8 @@ const productSchema= yup.object ({
     description: yup.string().required(),
     value: yup.number().required().positive().integer(),
     image: yup.string().required(),
-    category: yup.object(),
-    quantity: yup.number().required().positive().integer(),    
+    categoryId: yup.string().required(),
+    quantity: yup.number().required().positive().integer()    
     
 })
 

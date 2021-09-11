@@ -9,6 +9,7 @@ const ProductSchema = new Schema({
   },
   title: {
     type: String,
+    unique: true,
     require:true
   },
   description:{
@@ -30,7 +31,7 @@ const ProductSchema = new Schema({
   updatedDate: {
     type: Date,   
   },
-  category:
+  categoryId:
   {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'

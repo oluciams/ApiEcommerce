@@ -18,18 +18,13 @@ const authHeader = req.headers['authorization'];
     if (err) {
       next({ statusCode: 403, message: 'forbidden' });
     }
-    else {
-      console.log(user);
+    else {      
       req.user = user.id;
-
       const dataUser = await User.findById(user.id)
-
       res.locals.user = dataUser       
       next();
     }
   })
-
-
 }
 
 module.exports = authTokenValidator;
