@@ -7,11 +7,11 @@ const categorySchema = require('../validations/category.validation')
 const {createCategory, showCategories, getCategory, updateCategories} = require('../controllers/category.controllers');
 
 
-router.get('/categories', authTokenValidator, showCategories)
+router.get('/categories', showCategories)
 
 router.post('/categories', authTokenValidator, validation(categorySchema), createCategory)
 
-router.get('/categories/:id', authTokenValidator, getCategory)
+router.get('/categories/:id', getCategory)
 
 router.put('/categories/:id', authTokenValidator, validation(categorySchema), updateCategories)
 

@@ -1,22 +1,24 @@
 const router = require('express').Router();
+
+const authTokenValidator = require('../middlewares/authTokenValidator');
 const validation = require('../middlewares/validationMiddleware')
 const userSchema = require('../validations/user.validation')
+const loginSchema = require('../validations/login.validation')
 
 const { loginUser, createUser, showData, getUser, updateUser, deleteUser} = require('../controllers/auth.controllers');
-const authTokenValidator = require('../middlewares/authTokenValidator');
 
-// signup
+
 router.post('/signup', validation(userSchema), createUser);
 
-//login
-router.post('/login', loginUser);
+router.post('/login', validation(loginSchema), loginUser);
 
 router.get('/user/:id', getUser);
 
-// Update Profile
-router.put('/user/:id', authTokenValidator, updateUser);
+router.put('/user/:id', authTokenValidator, validation(userSchema), updateUser);
 
-router.delete('/user/:id', deleteUser)
+router.delete('/user/:id', authTokenValidator, deleteUser)
+
+
 
 // jwt testing validation
 router.get('/', authTokenValidator, showData);
