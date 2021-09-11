@@ -1,10 +1,12 @@
 const router = require('express').Router();
+const validation = require('../middlewares/validationMiddleware')
+const userSchema = require('../validations/user.validation')
 
 const { loginUser, createUser, showData, getUser, updateUser, deleteUser} = require('../controllers/auth.controllers');
 const authTokenValidator = require('../middlewares/authTokenValidator');
 
 // signup
-router.post('/signup', createUser);
+router.post('/signup', validation(userSchema), createUser);
 
 //login
 router.post('/login', loginUser);

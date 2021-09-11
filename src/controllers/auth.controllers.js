@@ -9,26 +9,23 @@ const jwt = require('jsonwebtoken');
  */
 const createUser = async (req, res) => {
 
-  const { name, lastname, email, password, confirmationPassword, profilePicture } = req.body;
-  if (!name || !lastname || !email || !password || !confirmationPassword || !profilePicture ) {
-    res.status(403).json({ error: { status: 403,
-    message: 'Some fields weren\'t send, please check if the name, lastname, email, password and confirmation password ' } });
-  }
-  if (password !== confirmationPassword) {
-    res.status(403).json({ error: { status: 403, message: 'passwords doesn\'t match' } });
-  }
+  const { name, lastname, email, password, profilePicture } = req.body;  
 
   try {
     const user = await new User({ name, lastname, email, password, profilePicture });
-    await user.save();
-    res.status(201).json(user);
+    user.save();
+    res.status(201).json({status: true, user});
   } catch (error) {
+    res.status(400).json({ error })   
+    error.message = ' user not created'   
     // error.statusCode = 403
-    // error.message = ' user not created'
-    //FIXME: fix handling erros
-    throw new Error(error);
+    // throw new Error(error);
   }
 }
+
+
+//     res.status(400).json({ error })    
+//   }    
 
 const loginUser = async (req, res) => {
 
