@@ -16,9 +16,8 @@ const createUser = async (req, res) => {
     user.save();
     res.status(201).json({status: true, user});
   } catch (error) {
-    res.status(400).json({ error })   
-    error.message = ' user not created'   
-    // error.statusCode = 403
+    res.status(400).json({status: false, error})   
+    error.message = ' user not created'     
     // throw new Error(error);
   }
 }

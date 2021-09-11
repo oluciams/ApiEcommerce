@@ -5,6 +5,7 @@ const CategorySchema = new Schema({
   
     title: {
     type: String,
+    unique: true,
     require:true
   },
   description:{

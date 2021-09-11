@@ -3,13 +3,11 @@ const validation = (schema)=> async (req, res, next) =>{
 
   try {
     await schema.validate(body)
-    next()
-    return next()    
+    next()     
     
   } catch (error) {
     return res.status(400).json({error})    
   }
-
 }
 
 module.exports = validation 
