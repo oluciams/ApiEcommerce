@@ -1,18 +1,19 @@
 const router = require('express').Router();
+
+const authTokenValidator = require('../middlewares/authTokenValidator')
 const validation = require('../middlewares/validationMiddleware')
 const categorySchema = require('../validations/category.validation')
 
-
 const {createCategory, showCategories, getCategory, updateCategories} = require('../controllers/category.controllers');
-const authTokenValidator = require('../middlewares/authTokenValidator');
 
-router.get('/categories',authTokenValidator, showCategories)
 
-router.post('/categories', validation(categorySchema), authTokenValidator, createCategory)
+router.get('/categories', authTokenValidator, showCategories)
 
-router.post('/categories/:id', authTokenValidator, getCategory)
+router.post('/categories', authTokenValidator, validation(categorySchema), createCategory)
 
-router.put('/categories/:id', validation(categorySchema), authTokenValidator, updateCategories)
+router.get('/categories/:id', authTokenValidator, getCategory)
+
+router.put('/categories/:id', authTokenValidator, validation(categorySchema), updateCategories)
 
 
 module.exports = router;
