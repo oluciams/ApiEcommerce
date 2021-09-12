@@ -48,23 +48,13 @@ const getUser = async (req, res)=>{
   }
 }
 
-
-const logOut = (req, res) => {
-  console.log('logout user');
-}
-
-const showData = (req, res) => {
-  console.log(req.headers);
-  res.status(200).json({ message: 'private data' })
-}
-
-
 const updateUser = async (req, res) => {
   const id = req.params.id
   let { name, lastname, email, profilePicture} = req.body;
 
   try {
-    const user = await User.findByIdAndUpdate(id, { name, lastname, email, profilePicture})    
+    let user = await User.findByIdAndUpdate(id, { name, lastname, email, profilePicture})
+     user = await User.findById(id)
     res.status(201).json({success: true, user});    
   } catch (error) {
     res.status(400).json({success: false, error})
@@ -81,11 +71,23 @@ const deleteUser = async (req, res) => {
   }    
 }
 
+const logOut = (req, res) => {  
+
+  try {    
+    console.log('logout user');
+    res.status(200).json({success: true, message: 'logout user'});    
+    
+  } catch (error) {
+    res.status(400).json({success: false, error})    
+  }
+}
+
+
+
 module.exports = {
   createUser,
   loginUser,
-  logOut,
-  showData,
+  logOut,  
   getUser,
   updateUser,
   deleteUser
