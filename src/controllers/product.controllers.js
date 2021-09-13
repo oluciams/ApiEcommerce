@@ -9,10 +9,10 @@ const createProducts = async(req, res)=>{
 
   const userId = getUserIdByToken(token)
 
-  const {title, description, value, image, categoryId, quantity} = req.body;
+  const {title, description, price, image, categoryId, quantity} = req.body;
   const category = await Category.findById(categoryId)
   try {
-      const product = new Product({title, description, value, image, categoryId, quantity, user: userId});
+      const product = new Product({title, description, price, image, categoryId, quantity, user: userId});
       
       const savedProduct = await product.save()
       //adiciono el producto creado al arreglo de productos de esa categoria
@@ -54,10 +54,10 @@ const getProducts = async (req, res)=>{
 
   const updateProducts =  async(req, res)=>{
     const {id} = req.params
-    let {title, description, value, image, categoryId, quantity} = req.body
+    let {title, description, price, image, categoryId, quantity} = req.body
 
     try{    
-        let product = await Product.findByIdAndUpdate(id, {title, description, value, image, categoryId, quantity})
+        let product = await Product.findByIdAndUpdate(id, {title, description, price, image, categoryId, quantity})
         product = await Product.findById(id)
         res.status(200).json({success: true, product})        
     }catch (error) {

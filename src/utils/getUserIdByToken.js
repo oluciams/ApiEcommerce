@@ -19,3 +19,5 @@ const getUserIdByToken = (token) => {
 
 
 module.exports = getUserIdByToken;
+
+// https://placeimg.com/200/200/architectura
