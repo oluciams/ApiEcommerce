@@ -1,12 +1,18 @@
 const Product = require('../models/product.model')
 const Category = require('../models/category.model')
+const getUserIdByToken = require ('../utils/getUserIdByToken')
+
 
 const createProducts = async(req, res)=>{  
+
+  const token = req.headers.authorization
+
+  const userId = getUserIdByToken(token)
 
   const {title, description, value, image, categoryId, quantity} = req.body;
   const category = await Category.findById(categoryId)
   try {
-      const product = new Product({title, description, value, image, categoryId, quantity, user: res.locals.user});
+      const product = new Product({title, description, value, image, categoryId, quantity, user: userId});
       
       const savedProduct = await product.save()
       //adiciono el producto creado al arreglo de productos de esa categoria

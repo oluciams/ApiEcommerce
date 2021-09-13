@@ -1,10 +1,8 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/user.model')
 
 
 const authTokenValidator = (req, res, next) => {
 const authHeader = req.headers['authorization'];
-
 
   if (!authHeader) {
     next({ statusCode: 401, message: 'unauthorized' })
@@ -19,9 +17,7 @@ const authHeader = req.headers['authorization'];
       next({ statusCode: 403, message: 'forbidden' });
     }
     else {      
-      req.user = user.id;
-      const dataUser = await User.findById(user.id)
-      res.locals.user = dataUser       
+      
       next();
     }
   })
