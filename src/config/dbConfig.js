@@ -1,13 +1,15 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/ecommerceAPI', {
+const URL = 'mongodb://localhost:27017/ecommerceAPI'
+
+mongoose.connect(process.env.MONGO_DB_URL || URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
 });
 
+const db = mongoose.connection;
 
-mongoose.connection.on('error', () => console.error('Error in db connection'));
-
-mongoose.connection.once('open', () => console.log(' db connected'));
+db.on('error', () => console.error.bind(console, 'Error in db connection'));
+db.once('open', () => console.log('db connected'));
