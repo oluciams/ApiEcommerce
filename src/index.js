@@ -32,7 +32,6 @@ app.use(cloudinaryRoutes)
 
 
 
-
 app.get('*', function (req, res, next) {
     res.status(404).json({ error: 'not found' });
 });
