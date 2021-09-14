@@ -10,24 +10,25 @@ const jwt = require('jsonwebtoken');
 // mongo db connection
 require('./config/dbConfig');
 
-
 const authRoutes = require('./routes/auth.routes');
 const productRoutes= require('./routes/product.routes');
 const categoryRoutes= require('./routes/category.routes')
+const cloudinaryRoutes= require('./routes/cloudinary.routes')
 
 // express settings
 // decode form
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({limit: '50mb', extended: true }));
 //decode json
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 //cors
 app.use(cors())
+app.use(express.static('public'))
 
 // routes
 app.use(authRoutes);
 app.use(productRoutes)
 app.use(categoryRoutes)
-
+app.use(cloudinaryRoutes)
 
 
 
