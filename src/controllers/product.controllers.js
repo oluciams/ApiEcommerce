@@ -17,11 +17,11 @@ const createProducts = async(req, res)=>{
       const savedProduct = await product.save()
       //adiciono el producto creado al arreglo de productos de esa categoria
       category.products= category.products.concat(savedProduct._id)
-      await category.save()  
-      res.status(201).json({success: true, savedProduct})      
+      await category.save()       
+      res.status(201).json(savedProduct)       
       
   } catch (error) {
-    res.status(400).json({success: false, error})     
+    res.status(400).json(error)     
   }
 }
 
@@ -30,14 +30,15 @@ const showProducts = async (req, res)=>{
     try {
       if(req.query.category){ 
         const categoryId = req.query.category 
-        const products = await Product.find({categoryId}).populate('category')        
-        res.status(200).json({success:true, products}) 
+        const products = await Product.find({categoryId}).populate('category')       
+        res.status(200).json(products) 
       }else{
         const products = await Product.find({}).populate('category')
-        res.status(200).json({success: true, products})       
+        res.status(200).json(products) 
+        
       }
       } catch (error) {
-        res.status(403).json({success: false, error})
+        res.status(403).json(error)
       }
 }
 
@@ -45,10 +46,10 @@ const getProducts = async (req, res)=>{
     const {id} = req.params
     try {
       const product = await Product.findById(id)
-      res.status(200).json({success: true, product})
+      res.status(200).json(product)
       
     } catch (error) {
-      res.status(403).json({success: false, error})          
+      res.status(403).json(error)          
     }  
   }
 
@@ -59,9 +60,9 @@ const getProducts = async (req, res)=>{
     try{    
         let product = await Product.findByIdAndUpdate(id, {title, description, price, image, categoryId, quantity})
         product = await Product.findById(id)
-        res.status(200).json({success: true, product})        
+        res.status(200).json(product)        
     }catch (error) {
-        res.status(403).json({success: false, error})
+        res.status(403).json(error)
     }
   }
 
@@ -69,9 +70,9 @@ const getProducts = async (req, res)=>{
     try {        
         const { id } = req.params;
         await Product.deleteOne({_id:id }) 
-        res.status(200).json({success: true, message: 'Product deleted successfully'})
+        res.status(200).json({message: 'Product deleted successfully'})
     }catch (error) {
-        res.status(400).json({success: false, error})
+        res.status(401).json(error)
     }
 }
 

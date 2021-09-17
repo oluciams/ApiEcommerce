@@ -16,6 +16,7 @@ router.get('/products/:id', getProducts)
 router.put('/products/:id', authTokenValidator, validation(productSchema), updateProducts)
 
 router.delete('/products/:id', authTokenValidator, deleteProducts)
+//router.delete('/products/:id',  deleteProducts)
 
 module.exports = router;
 
