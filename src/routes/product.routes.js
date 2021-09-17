@@ -8,7 +8,8 @@ const {createProducts, showProducts, getProducts, updateProducts, deleteProducts
 
 router.get('/products', showProducts)
 
-router.post('/products', authTokenValidator, validation(productSchema), createProducts)
+// router.post('/products', authTokenValidator, validation(productSchema), createProducts)
+router.post('/products', validation(productSchema), createProducts)
 
 router.get('/products/:id', getProducts)
 
