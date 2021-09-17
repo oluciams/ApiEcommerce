@@ -30,8 +30,8 @@ const showProducts = async (req, res)=>{
     try {
       if(req.query.category){ 
         const categoryId = req.query.category 
-        const products = await Product.find({categoryId}).populate('category')
-        res.status(200).json(products) 
+        const products = await Product.find({categoryId}).populate('category')        
+        res.status(200).json({success:true, products}) 
       }else{
         const products = await Product.find({}).populate('category')
         res.status(200).json({success: true, products})       
