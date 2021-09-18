@@ -5,9 +5,10 @@ const getUserIdByToken = require ('../utils/getUserIdByToken')
 
 const createProducts = async(req, res)=>{  
 
-  const token = req.headers.authorization
+  // const token = req.headers.authorization
 
-  const userId = getUserIdByToken(token)
+  // const userId = getUserIdByToken(token)
+  const userId = "61411fea19dd6700163cf075"
 
   const {title, description, price, image, categoryId, quantity} = req.body;
   const category = await Category.findById(categoryId)
