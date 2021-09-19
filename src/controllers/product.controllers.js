@@ -8,7 +8,7 @@ const createProducts = async(req, res)=>{
   // const token = req.headers.authorization
 
   // const userId = getUserIdByToken(token)
-  const userId = "61411fea19dd6700163cf075"
+  const userId = "612e599e1f5d0d519b85fe69"
 
   const {title, description, price, image, categoryId, quantity} = req.body;
   const category = await Category.findById(categoryId)
