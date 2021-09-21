@@ -8,15 +8,14 @@ const {createProducts, showProducts, getProducts, updateProducts, deleteProducts
 
 router.get('/products', showProducts)
 
-// router.post('/products', authTokenValidator, validation(productSchema), createProducts)
-router.post('/products', validation(productSchema), createProducts)
+router.post('/products', authTokenValidator, validation(productSchema), createProducts)
 
 router.get('/products/:id', getProducts)
 
 router.put('/products/:id', authTokenValidator, validation(productSchema), updateProducts)
 
 router.delete('/products/:id', authTokenValidator, deleteProducts)
-//router.delete('/products/:id',  deleteProducts)
+
 
 module.exports = router;
 
