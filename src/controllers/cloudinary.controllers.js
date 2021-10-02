@@ -21,12 +21,11 @@ const uploadImages = async (req, res)=>{
       upload_preset: 'ecommerce',
       })
       
-    const imageId = uploadResponse.public_id  
+    const imageId = uploadResponse.public_id        
     res.json({success: true, public_id: imageId})    
 
-  } catch (err) {
-    console.error(err)
-    res.status(500).json({err: 'Something went wrong'})    
+  } catch (err) {   
+    res.status(500).json({success: false, err: 'Something went wrong'})    
   }
 }
 
