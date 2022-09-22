@@ -29,27 +29,7 @@ const uploadImages = async (req, res)=>{
   }
 }
 
-const deleteImages = async (req, res)=>{
-  
-  try {
-    const {id} = req.params   
-    const file = 'ecommerce/'
-    const public = `${file}${id}`    
-    
-    const deleteResponse = await cloudinary.uploader.destroy(public, {
-      upload_preset: 'ecommerce',      
-      })     
-    
-    console.log(deleteResponse)        
-    res.json({success: true, public})    
-
-  } catch (err) {       
-    res.status(500).json({success: false, err: 'Something went wrong'})    
-  }
-}
-
 module.exports = {
   getImages,
-  uploadImages,
-  deleteImages
+  uploadImages
 }
